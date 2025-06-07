@@ -1,5 +1,12 @@
+import Layout from "../components/Layout";
+import MoodForm from "../components/MoodForm";
+
 const Home = () => {
-  return <h1>Home</h1>;
+  return (
+    <Layout>
+      <MoodForm />
+    </Layout>
+  );
 };
 
 export default Home;

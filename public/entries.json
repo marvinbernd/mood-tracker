@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "date": "2023-10-01",
+    "mood": "happy",
+    "notes": "Had a great day at the park with friends."
+  },
+  {
+    "id": "2",
+    "date": "2023-10-02",
+    "mood": "sad",
+    "notes": "Felt a bit down today, missing family."
+  },
+  {
+    "id": "3",
+    "date": "2023-10-03",
+    "mood": "neutral",
+    "notes": "A regular day at work, nothing special."
+  },
+  {
+    "id": "4",
+    "date": "2023-10-04",
+    "mood": "excited",
+    "notes": "Looking forward to the weekend trip!"
+  },
+  {
+    "id": "5",
+    "date": "2023-10-05",
+    "mood": "anxious",
+    "notes": "Feeling anxious about the upcoming presentation."
+  }
+]
