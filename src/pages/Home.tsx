@@ -3,7 +3,7 @@ import MoodForm from "../components/MoodForm";
 
 const Home = () => {
   return (
-    <Layout>
+    <Layout title="Mood Tracker">
       <MoodForm />
     </Layout>
   );

@@ -46,12 +46,12 @@ const Calendar = ({
   const daysInMonth = getDaysInMonth(year, month);
 
   return (
-    <div class="px-6">
+    <div>
       <div class="flex justify-between items-center mb-6">
         <button onClick={goToPreviousMonth}>
           <ChevronLeft class="h-6 w-6" />
         </button>
-        <h2 class="text-lg font-semibold">
+        <h2 class="font-bold">
           {monthNames[month]} {year}
         </h2>
         <button onClick={goToNextMonth}>

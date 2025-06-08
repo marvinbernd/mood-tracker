@@ -5,26 +5,28 @@ const initialEntries = [
   {
     id: "1",
     date: "2023-10-01",
-    mood: "happy",
+    mood: "Happy",
     notes: "Had a great day!",
   },
   {
     id: "2",
     date: "2023-10-02",
-    mood: "sad",
+    mood: "Sad",
     notes: "Feeling a bit down today.",
   },
 ];
 
-interface MoodEntry {
+export type Mood = "Happy" | "Sad" | "Neutral" | "Angry";
+
+export interface MoodEntry {
   id: string;
   date: string;
-  mood: string;
+  mood: Mood;
   notes: string;
 }
 
 type Action =
-  | { type: "added"; date: string; mood: string; notes: string }
+  | { type: "added"; date: string; mood: Mood; notes: string }
   | { type: "removed"; id: string };
 
 export const EntriesContext = createContext<MoodEntry[] | null>(null);
@@ -50,8 +52,6 @@ export function EntriesProvider({
 function entriesReducer(entries: MoodEntry[], action: any): MoodEntry[] {
   switch (action.type) {
     case "added":
-      console.log("Adding entry:", action);
-      console.log("Current entries:", entries);
       return [
         ...entries,
         {

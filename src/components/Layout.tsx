@@ -1,11 +1,17 @@
 import Footer from "./Footer";
 import Header from "./Header";
 
-const Layout = ({ children }: { children: preact.ComponentChildren }) => {
+const Layout = ({
+  children,
+  title,
+}: {
+  children: preact.ComponentChildren;
+  title: string;
+}) => {
   return (
-    <div class="container shadow-lg mx-auto my-4 p-4 rounded-lg">
-      <Header />
-      {children}
+    <div class="container shadow-lg mx-auto rounded-lg flex flex-col min-h-screen">
+      <Header title={title} />
+      <main>{children}</main>
       <Footer />
     </div>
   );

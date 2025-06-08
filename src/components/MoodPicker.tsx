@@ -1,35 +1,31 @@
+import type { Mood } from "../context/MoodContext";
+
 const MoodPicker = ({
   selectedMood,
   setSelectedMood,
 }: {
-  selectedMood: string | null;
-  setSelectedMood: (mood: string | null) => void;
+  selectedMood: Mood | null;
+  setSelectedMood: (mood: Mood | null) => void;
 }) => {
-  const moods = [
-    { id: 1, name: "Happy" },
-    { id: 2, name: "Sad" },
-    { id: 3, name: "Angry" },
-    { id: 4, name: "Excited" },
-    { id: 5, name: "Relaxed" },
-  ];
+  const moods: Mood[] = ["Happy", "Sad", "Neutral", "Angry"];
 
-  const handleMoodSelect = (mood: any) => {
-    setSelectedMood(mood.name);
+  const handleMoodSelect = (mood: Mood) => {
+    setSelectedMood(mood);
   };
 
   return (
     <div>
-      <h3>How are you feeling today?</h3>
+      <h3 class="font-bold mb-3">How are you feeling today?</h3>
       <div class="flex flex-wrap gap-2">
         {moods.map((mood) => (
           <div
-            key={mood.id}
+            key={mood}
             class={`p-2 border rounded cursor-pointer ${
-              selectedMood === mood.name ? "bg-blue-500 text-white" : ""
+              selectedMood === mood ? "bg-blue-500 text-white" : ""
             }`}
             onClick={() => handleMoodSelect(mood)}
           >
-            {mood.name}
+            {mood}
           </div>
         ))}
       </div>

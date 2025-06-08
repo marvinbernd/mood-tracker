@@ -1,18 +1,18 @@
-import { useContext, useState } from "preact/hooks";
+import { useState } from "preact/hooks";
 import Calendar from "./Calendar";
 import MoodPicker from "./MoodPicker";
-import { useEntriesDispatch } from "../context/MoodContext";
+import { useEntriesDispatch, type Mood } from "../context/MoodContext";
 
 const MoodForm = () => {
   const [date, setDate] = useState<string>(
     new Date().toISOString().split("T")[0]
   );
-  const [mood, setMood] = useState<string | null>(null);
+  const [mood, setMood] = useState<Mood | null>(null);
   const [notes, setNotes] = useState<string>("");
 
   const dispatch = useEntriesDispatch();
 
-  const handleSubmit = (date: string, mood: string, notes: string) => {
+  const handleSubmit = (date: string, mood: Mood, notes: string) => {
     if (!dispatch) return;
     dispatch({
       type: "added",
@@ -30,6 +30,7 @@ const MoodForm = () => {
           if (!mood) return;
           handleSubmit(date, mood, notes);
         }}
+        class="p-4 flex flex-col gap-4"
       >
         <Calendar selectedDate={date} setSelectedDate={setDate} />
         <MoodPicker selectedMood={mood} setSelectedMood={setMood} />
@@ -43,7 +44,7 @@ const MoodForm = () => {
           ></textarea>
         </div>
         <div class="mt-4">
-          <button class="bg-blue-500 text-white px-4 py-2 rounded">
+          <button class="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer">
             Save Mood
           </button>
         </div>

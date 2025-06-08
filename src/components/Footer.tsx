@@ -9,7 +9,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer class="p-4">
+    <footer class="p-4 justify-self-end">
       <nav>
         <ul class="flex justify-between">
           {menu.map((item) => (
