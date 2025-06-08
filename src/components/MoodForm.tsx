@@ -1,16 +1,22 @@
-import { useState } from "preact/hooks";
+import { useContext, useState } from "preact/hooks";
 import Calendar from "./Calendar";
 import MoodPicker from "./MoodPicker";
+import { useEntriesDispatch } from "../context/MoodContext";
 
 const MoodForm = () => {
   const [date, setDate] = useState(new Date().getDate());
   const [mood, setMood] = useState<number | null>(null);
   const [notes, setNotes] = useState("");
 
+  const dispatch = useEntriesDispatch();
+
   const handleSubmit = (date: number, mood: number | null, notes: string) => {
-    // Here you would typically handle the form submission,
-    // such as sending the data to a server or saving it locally.
-    console.log("Submitted:", { date, mood, notes });
+    dispatch({
+      type: "added",
+      mood,
+      date,
+      notes,
+    });
   };
 
   return (

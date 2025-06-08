@@ -1,24 +1,8 @@
-import { useEffect, useState } from "preact/hooks";
 import Layout from "../components/Layout";
-
-type MoodEntry = {
-  id: string;
-  date: string;
-  mood: string;
-  notes: string;
-};
+import { useEntries } from "../context/MoodContext";
 
 const Journal = () => {
-  // get gentries from the server
-  const [entries, setEntries] = useState<MoodEntry[]>([]);
-  useEffect(() => {
-    const fetchEntries = async () => {
-      const response = await fetch("/public/entries.json");
-      const data = await response.json();
-      setEntries(data);
-    };
-    fetchEntries();
-  }, []);
+  const entries = useEntries();
 
   return (
     <Layout>
@@ -26,7 +10,7 @@ const Journal = () => {
         <h2>Your Mood Journal</h2>
         <p>Here you can view and manage your mood entries.</p>
         <ul>
-          {entries.map((entry) => (
+          {entries?.map((entry) => (
             <li key={entry.id}>
               <strong>{entry.date}</strong>: {entry.mood} - {entry.notes}
             </li>

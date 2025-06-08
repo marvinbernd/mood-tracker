@@ -1,15 +1,18 @@
 import { render } from "preact";
 import "./index.css";
-import { App } from "./app.tsx";
 import { BrowserRouter, Routes, Route } from "react-router";
 import Journal from "./pages/Journal.tsx";
+import Home from "./pages/Home.tsx";
+import { EntriesProvider } from "./context/MoodContext.tsx";
 
 render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="/journal" element={<Journal />} />
-    </Routes>
-  </BrowserRouter>,
+  <EntriesProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/journal" element={<Journal />} />
+      </Routes>
+    </BrowserRouter>
+  </EntriesProvider>,
   document.getElementById("app")!
 );
