@@ -5,8 +5,8 @@ const Calendar = ({
   selectedDate,
   setSelectedDate,
 }: {
-  selectedDate: number;
-  setSelectedDate: (date: number) => void;
+  selectedDate: string;
+  setSelectedDate: (date: string) => void;
 }) => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
 
@@ -72,11 +72,11 @@ const Calendar = ({
           return (
             <div
               class={`cursor-pointer ${
-                day === selectedDate
+                day === parseInt(selectedDate.split("-")[2])
                   ? "bg-blue-500 text-white rounded-full"
                   : ""
               }`}
-              onClick={() => setSelectedDate(day)}
+              onClick={() => setSelectedDate(`${year}-${month + 1}-${day}`)}
             >
               {day}
             </div>

@@ -2,8 +2,8 @@ const MoodPicker = ({
   selectedMood,
   setSelectedMood,
 }: {
-  selectedMood: number | null;
-  setSelectedMood: (mood: number | null) => void;
+  selectedMood: string | null;
+  setSelectedMood: (mood: string | null) => void;
 }) => {
   const moods = [
     { id: 1, name: "Happy" },
@@ -14,7 +14,7 @@ const MoodPicker = ({
   ];
 
   const handleMoodSelect = (mood: any) => {
-    setSelectedMood(mood.id);
+    setSelectedMood(mood.name);
   };
 
   return (
@@ -25,7 +25,7 @@ const MoodPicker = ({
           <div
             key={mood.id}
             class={`p-2 border rounded cursor-pointer ${
-              selectedMood === mood.id ? "bg-blue-500 text-white" : ""
+              selectedMood === mood.name ? "bg-blue-500 text-white" : ""
             }`}
             onClick={() => handleMoodSelect(mood)}
           >

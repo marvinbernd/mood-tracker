@@ -23,8 +23,13 @@ interface MoodEntry {
   notes: string;
 }
 
+type Action =
+  | { type: "added"; date: string; mood: string; notes: string }
+  | { type: "removed"; id: string };
+
 export const EntriesContext = createContext<MoodEntry[] | null>(null);
-export const EntriesDispatchContext = createContext<any | null>(null);
+export const EntriesDispatchContext =
+  createContext<React.Dispatch<Action> | null>(null);
 
 export function EntriesProvider({
   children,
@@ -45,6 +50,8 @@ export function EntriesProvider({
 function entriesReducer(entries: MoodEntry[], action: any): MoodEntry[] {
   switch (action.type) {
     case "added":
+      console.log("Adding entry:", action);
+      console.log("Current entries:", entries);
       return [
         ...entries,
         {

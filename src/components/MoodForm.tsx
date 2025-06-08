@@ -4,13 +4,16 @@ import MoodPicker from "./MoodPicker";
 import { useEntriesDispatch } from "../context/MoodContext";
 
 const MoodForm = () => {
-  const [date, setDate] = useState(new Date().getDate());
-  const [mood, setMood] = useState<number | null>(null);
-  const [notes, setNotes] = useState("");
+  const [date, setDate] = useState<string>(
+    new Date().toISOString().split("T")[0]
+  );
+  const [mood, setMood] = useState<string | null>(null);
+  const [notes, setNotes] = useState<string>("");
 
   const dispatch = useEntriesDispatch();
 
-  const handleSubmit = (date: number, mood: number | null, notes: string) => {
+  const handleSubmit = (date: string, mood: string, notes: string) => {
+    if (!dispatch) return;
     dispatch({
       type: "added",
       mood,
@@ -24,6 +27,7 @@ const MoodForm = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
+          if (!mood) return;
           handleSubmit(date, mood, notes);
         }}
       >

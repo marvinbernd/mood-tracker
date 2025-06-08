@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   const menu = [
     { name: "Home", href: "/" },
@@ -12,9 +14,9 @@ const Footer = () => {
         <ul class="flex justify-between">
           {menu.map((item) => (
             <li key={item.name}>
-              <a href={item.href} class="hover:underline">
+              <Link to={item.href} class="hover:underline">
                 {item.name}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
