@@ -1,17 +1,17 @@
 import { createContext } from "preact";
-import { useContext, useReducer } from "preact/hooks";
+import { useContext, useReducer, type Dispatch } from "preact/hooks";
 
 const initialEntries = [
   {
     id: "1",
     date: "2023-10-01",
-    mood: "Happy",
+    mood: "Happy" as Mood,
     notes: "Had a great day!",
   },
   {
     id: "2",
     date: "2023-10-02",
-    mood: "Sad",
+    mood: "Sad" as Mood,
     notes: "Feeling a bit down today.",
   },
 ];
@@ -30,8 +30,9 @@ type Action =
   | { type: "removed"; id: string };
 
 export const EntriesContext = createContext<MoodEntry[] | null>(null);
-export const EntriesDispatchContext =
-  createContext<React.Dispatch<Action> | null>(null);
+export const EntriesDispatchContext = createContext<Dispatch<Action> | null>(
+  null
+);
 
 export function EntriesProvider({
   children,
@@ -49,7 +50,7 @@ export function EntriesProvider({
   );
 }
 
-function entriesReducer(entries: MoodEntry[], action: any): MoodEntry[] {
+function entriesReducer(entries: MoodEntry[], action: Action): MoodEntry[] {
   switch (action.type) {
     case "added":
       return [
@@ -64,7 +65,9 @@ function entriesReducer(entries: MoodEntry[], action: any): MoodEntry[] {
     case "removed":
       return entries.filter((entry) => entry.id !== action.id);
     default: {
-      throw Error("Unknown action: " + action.type);
+      throw Error("Unknown action: " + (action as any).type);
+      // The following line is unreachable but satisfies TypeScript's return type checking
+      return entries;
     }
   }
 }
